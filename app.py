@@ -23,14 +23,14 @@ def results():
         return {'fulfillmentText': 'Your order for {} mugs with desired delivery time as {} has been successfully placed!!!'.format(quantity, deliverytime)}
     
     if action == 'folder.folder-yes' or action == 'folder.folder-no':
-        parameters = req.get('queryResult').get('outputContexts').get('parameters')
+        parameters = req.get('queryResult').get('outputContexts')[0].get('parameters')
         deliverytime = parameters['deliverytime']
         pouchprint = parameters['pouchprint']
         foldersize = parameters['foldersize']
         quantity = parameters['quantity']
         papertype = parameters['papertype']
         pouch = parameters['pouch']
-        return {'fulfillmentText': 'Your order for {} folders has been placed!!!!'.format(quantity)}
+        return {'fulfillmentText': 'Your order for {} folders has been placed. It will be delivered by {}!!!!'.format(quantity, deliverytime)}
 
     # return a fulfillment response
     return {'fulfillmentText': 'This is a response from webhook.'}    
