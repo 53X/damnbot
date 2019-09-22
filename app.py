@@ -17,7 +17,10 @@ def results():
     # fetch action from json
     action = req.get('queryResult').get('action')
     if action == 'mug':
-        return {'fulfillmentText': 'Fuck Yeah !!! '}
+        parameters = req.get('queryResult').get('parameters')
+        deliverytime = parameters['deliverytime']
+        quantity = parameters['quantity']
+        return {'fulfillmentText': 'Your order for {} mugs with desired delivery time as {} has been successfully placed!!!'.format(quantity, deliverytime)}
     # return a fulfillment response
     return {'fulfillmentText': 'This is a response from webhook.'}    
 
