@@ -22,7 +22,7 @@ def results():
 
 
 # create a route for webhook
-@app.route('/webhook')
+@app.route('/webhook',  methods=['GET', 'POST'])
 def webhook():
      # return response
     return make_response(jsonify(results()))
